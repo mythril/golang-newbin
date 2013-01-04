@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func fibber() func(int) uint64 {
+var fib = func() func(int) uint64 {
 	memo := make(map[int]uint64)
 	var realfib func(int) uint64
 	realfib = func(a int) uint64 {
@@ -28,10 +28,9 @@ func fibber() func(int) uint64 {
 		return r
 	}
 	return realfib
-}
+}()
 
 func main() {
-	fib := fibber()
 	for i := 0; i < 100; i += 1 {
 		fmt.Println("fib("+strconv.Itoa(i)+") == ", fib(i))
 	}
